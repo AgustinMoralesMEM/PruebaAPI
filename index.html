@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tabla de Usuarios</title>
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+</head>
+
+<body>
+    <div class="container">
+        <h1 class="text-center my-5">Tabla de Usuarios</h1>
+
+        <button type="button" class="btn btn-primary mb-3" data-toggle="modal" data-target="#agregarUsuarioModal">
+            Agregar Usuario
+        </button>
+
+        <!-- Tabla de Usuarios -->
+        <table class="table table-striped" name="tablaUsuarios" id="tablaUsuarios">
+            <thead>
+                <tr>
+                    <th>Apellido Paterno</th>
+                    <th>Apellido Materno</th>
+                    <th>Nombre</th>
+                    <th>Edad</th>
+                    <th>Género</th>
+                    <th>Entidad de Nacimiento</th>
+                    <th>Fecha de Nacimiento</th>
+                    <th>Curp</th>
+                    <th>RFC</th>
+                    <th>Peso</th>
+                    <th>Altura</th>
+                    <th>IMC</th>
+                    <th>Foto de Perfil</th>
+                    <th>Acciones</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Aquí se cargarán dinámicamente los usuarios -->
+                <!-- Crea un ciclo para recorrer los usuarios obtenidos de la api y mostrarlos en la tabla -->
+
+
+            </tbody>
+        </table>
+    </div>
+
+    <!-- Modal para agregar usuario -->
+    <div class="modal fade" id="agregarUsuarioModal" tabindex="-1" role="dialog"
+        aria-labelledby="agregarUsuarioModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="agregarUsuarioModalLabel">Agregar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" id="formUsuario" name="formUsuario">
+                    <table>
+                        <tr>
+                            <td><label for="apellidoPaterno">Apellido Paterno:</label></td>
+                            <td><input type="text" id="apellidoPaterno" name="apellidoPaterno" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="apellidoMaterno">Apellido Materno:</label></td>
+                            <td><input type="text" id="apellidoMaterno" name="apellidoMaterno" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="nombre">Nombre:</label></td>
+                            <td><input type="text" id="nombre" name="nombre" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="edad">Edad:</label></td>
+                            <td><input type="number" id="edad" name="edad" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="genero">Género:</label></td>
+                            <td>
+                                <select id="genero" name="genero" required>
+                                    <option value="Masculino">Masculino</option>
+                                    <option value="Femenino">Femenino</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="entidadNacimiento">Entidad de Nacimiento:</label></td>
+                            <td>
+                                <select id="entidadNacimiento" name="entidadNacimiento" required>
+                                    <option value="" disabled selected>Selecciona la entidad de nacimiento</option>
+                                    <option value="Aguascalientes">Aguascalientes</option>
+                                    <option value="Baja California">Baja California</option>
+                                    <option value="Baja California Sur">Baja California Sur</option>
+                                    <option value="Campeche">Campeche</option>
+                                    <option value="Chiapas">Chiapas</option>
+                                    <option value="Chihuahua">Chihuahua</option>
+                                    <option value="Ciudad de México">Ciudad de México</option>
+                                    <option value="Coahuila">Coahuila</option>
+                                    <option value="Colima">Colima</option>
+                                    <option value="Durango">Durango</option>
+                                    <option value="Estado de México">Estado de México</option>
+                                    <option value="Guanajuato">Guanajuato</option>
+                                    <option value="Guerrero">Guerrero</option>
+                                    <option value="Hidalgo">Hidalgo</option>
+                                    <option value="Jalisco">Jalisco</option>
+                                    <option value="Michoacán">Michoacán</option>
+                                    <option value="Morelos">Morelos</option>
+                                    <option value="Nayarit">Nayarit</option>
+                                    <option value="Nuevo León">Nuevo León</option>
+                                    <option value="Oaxaca">Oaxaca</option>
+                                    <option value="Puebla">Puebla</option>
+                                    <option value="Querétaro">Querétaro</option>
+                                    <option value="Quintana Roo">Quintana Roo</option>
+                                    <option value="San Luis Potosí">San Luis Potosí</option>
+                                    <option value="Sinaloa">Sinaloa</option>
+                                    <option value="Sonora">Sonora</option>
+                                    <option value="Tabasco">Tabasco</option>
+                                    <option value="Tamaulipas">Tamaulipas</option>
+                                    <option value="Tlaxcala">Tlaxcala</option>
+                                    <option value="Veracruz">Veracruz</option>
+                                    <option value="Yucatán">Yucatán</option>
+                                    <option value="Zacatecas">Zacatecas</option>
+                                </select>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td><label for="fechaNacimiento">Fecha de Nacimiento:</label></td>
+                            <td><input type="date" id="fechaNacimiento" name="fechaNacimiento" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="peso">Peso:</label></td>
+                            <td><input type="number" id="peso" name="peso" step="0.01" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="altura">Altura:</label></td>
+                            <td><input type="number" id="altura" name="altura" step="0.01" required></td>
+                        </tr>
+                        <tr>
+                            <td><label for="fotoPerfil">Foto de Perfil:</label></td>
+                            <td><input type="file" id="fotoPerfil" name="fotoPerfil" accept="image/jpeg" required>
+                            </td>
+                        </tr>
+                    </table>
+                    <button type="submit" id="agregarUsuario">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal para editar usuario -->
+    <div class="modal fade" id="editarUsuarioModal" tabindex="-1" role="dialog"
+        aria-labelledby="editarUsuarioModalModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editarUsuarioModalModalLabel">Editar Usuario</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form method="post" enctype="multipart/form-data" id="formUsuarioEditar" name="formUsuarioEditar">
+                        <table>
+                            <tr>
+                                <td><label for="apellidoPaterno">Apellido Paterno:</label></td>
+                                <td><input type="text" id="apellidoPaterno" name="apellidoPaterno" required></td>
+                                <td><input type="hidden" id="id" name="id" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="apellidoMaterno">Apellido Materno:</label></td>
+                                <td><input type="text" id="apellidoMaterno" name="apellidoMaterno" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="nombre">Nombre:</label></td>
+                                <td><input type="text" id="nombre" name="nombre" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="edad">Edad:</label></td>
+                                <td><input type="number" id="edad" name="edad" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="genero">Género:</label></td>
+                                <td>
+                                    <select id="genero" name="genero" required>
+                                        <option value="Masculino">Masculino</option>
+                                        <option value="Femenino">Femenino</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="entidadNacimiento">Entidad de Nacimiento:</label></td>
+                                <td>
+                                    <select id="entidadNacimiento" name="entidadNacimiento" required>
+                                        <option value="" disabled selected>Selecciona la entidad de nacimiento</option>
+                                        <option value="Aguascalientes">Aguascalientes</option>
+                                        <option value="Baja California">Baja California</option>
+                                        <option value="Baja California Sur">Baja California Sur</option>
+                                        <option value="Campeche">Campeche</option>
+                                        <option value="Chiapas">Chiapas</option>
+                                        <option value="Chihuahua">Chihuahua</option>
+                                        <option value="Ciudad de México">Ciudad de México</option>
+                                        <option value="Coahuila">Coahuila</option>
+                                        <option value="Colima">Colima</option>
+                                        <option value="Durango">Durango</option>
+                                        <option value="Estado de México">Estado de México</option>
+                                        <option value="Guanajuato">Guanajuato</option>
+                                        <option value="Guerrero">Guerrero</option>
+                                        <option value="Hidalgo">Hidalgo</option>
+                                        <option value="Jalisco">Jalisco</option>
+                                        <option value="Michoacán">Michoacán</option>
+                                        <option value="Morelos">Morelos</option>
+                                        <option value="Nayarit">Nayarit</option>
+                                        <option value="Nuevo León">Nuevo León</option>
+                                        <option value="Oaxaca">Oaxaca</option>
+                                        <option value="Puebla">Puebla</option>
+                                        <option value="Querétaro">Querétaro</option>
+                                        <option value="Quintana Roo">Quintana Roo</option>
+                                        <option value="San Luis Potosí">San Luis Potosí</option>
+                                        <option value="Sinaloa">Sinaloa</option>
+                                        <option value="Sonora">Sonora</option>
+                                        <option value="Tabasco">Tabasco</option>
+                                        <option value="Tamaulipas">Tamaulipas</option>
+                                        <option value="Tlaxcala">Tlaxcala</option>
+                                        <option value="Veracruz">Veracruz</option>
+                                        <option value="Yucatán">Yucatán</option>
+                                        <option value="Zacatecas">Zacatecas</option>
+                                    </select>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td><label for="fechaNacimiento">Fecha de Nacimiento:</label></td>
+                                <td><input type="date" id="fechaNacimiento" name="fechaNacimiento" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="peso">Peso:</label></td>
+                                <td><input type="number" id="peso" name="peso" step="0.01" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="altura">Altura:</label></td>
+                                <td><input type="number" id="altura" name="altura" step="0.01" required></td>
+                            </tr>
+                            <tr>
+                                <td><label for="fotoPerfilEditar">Foto de Perfil:</label></td>
+                                <td><input type="file" id="fotoPerfilEditar" name="fotoPerfilEditar" accept="image/jpeg"
+                                        required>
+                                </td>
+                            </tr>
+                        </table>
+                        <button type="submit">Guardar</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <!-- Scripts de Bootstrap y jQuery -->
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.4/dist/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script>
+        const formUsuario = document.getElementById('formUsuario');
+        formUsuario.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(formUsuario);
+            const json = {};
+            formData.forEach((value, key) => {
+                json[key] = value;
+            });
+            const fotoPerfil = document.getElementById('fotoPerfil');
+            const fotoPerfilValue = fotoPerfil.value;
+            const fotoPerfilExtension = fotoPerfilValue.split('.').pop();
+            if (fotoPerfilExtension !== 'jpg' && fotoPerfilExtension !== 'jpeg') {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'La imagen debe ser de tipo jpg o jpeg',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                })
+                return;
+            }
+            const reader = new FileReader();
+            reader.readAsDataURL(fotoPerfil.files[0]);
+            reader.onload = () => {
+                const base64 = reader.result.replace('data:image/jpeg;base64,', '');
+                json.fotoPerfil = base64;
+                const jsonStr = JSON.stringify(json);
+                agregarUsuario(jsonStr);
+            }
+        });
+
+        function agregarUsuario(jsonStr) {
+            console.log(jsonStr);
+            Swal.fire({
+                title: 'Cargando...',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            fetch('http://localhost/usuarios/services/UsuarioService.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonStr
+            })
+                .then(response => response.json())
+                .then(data => {
+                    Swal.close();
+                    Swal.fire({
+                        title: 'Usuario Agregado',
+                        text: 'El usuario se ha agregado correctamente',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    formUsuario.reset();
+                    $('#agregarUsuarioModal').modal('hide');
+                    obtenerUsuarios();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.close();
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Ha ocurrido un error al agregar el usuario',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    obtenerUsuarios();
+                });
+        }
+    </script>
+
+    <script>
+        const formUsuarioEditar = document.getElementById('formUsuarioEditar');
+        formUsuarioEditar.addEventListener('submit', (e) => {
+            e.preventDefault();
+            const formData = new FormData(formUsuarioEditar);
+            const json = {};
+            formData.forEach((value, key) => {
+                json[key] = value;
+            });
+            const fotoPerfil = document.getElementById('fotoPerfilEditar');
+            const fotoPerfilValue = fotoPerfil.value;
+            const fotoPerfilExtension = fotoPerfilValue.split('.').pop();
+            if (fotoPerfilExtension !== 'jpg' && fotoPerfilExtension !== 'jpeg') {
+                Swal.fire({
+                    title: 'Error!',
+                    text: 'La imagen debe ser de tipo jpg o jpeg',
+                    icon: 'error',
+                    confirmButtonText: 'Aceptar'
+                })
+                return;
+            }
+            const reader = new FileReader();
+            reader.readAsDataURL(fotoPerfil.files[0]);
+            reader.onload = () => {
+                const base64 = reader.result.replace('data:image/jpeg;base64,', '');
+                json.fotoPerfil = base64;
+                const jsonStr = JSON.stringify(json);
+                editarUsuario(jsonStr);
+            }
+        });
+
+        function editarUsuario(jsonStr) {
+            console.log(jsonStr);
+            Swal.fire({
+                title: 'Cargando...',
+                allowOutsideClick: false,
+                showConfirmButton: false,
+                willOpen: () => {
+                    Swal.showLoading();
+                }
+            });
+            fetch('http://localhost/usuarios/services/UsuarioService.php', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonStr
+            })
+                .then(response => response.json())
+                .then(data => {
+                    Swal.close();
+                    Swal.fire({
+                        title: 'Usuario Editado',
+                        text: 'El usuario se ha editado correctamente',
+                        icon: 'success',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    formUsuarioEditar.reset();
+                    $('#editarUsuarioModal').modal('hide');
+                    obtenerUsuarios();
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    Swal.close();
+                    Swal.fire({
+                        title: 'Error!',
+                        text: 'Ha ocurrido un error al agregar el usuario',
+                        icon: 'error',
+                        confirmButtonText: 'Aceptar'
+                    });
+                    obtenerUsuarios();
+                });
+        }
+    </script>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            obtenerUsuarios();
+        });
+
+        function calcularIMC(peso, altura, idUsuario) {
+            const json = {
+                peso: peso,
+                altura: altura
+            };
+            const jsonStr = JSON.stringify(json);
+            fetch('http://localhost/usuarios/services/IMCService.php', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: jsonStr
+            })
+                .then(response => response.json())
+                .then(data => {
+                    const imc = data.imc;
+                    const imcFormateado = imc.toString().substring(0, 5);
+                    const imcTd = document.getElementById(`imc${idUsuario}`)
+                    imcTd.innerHTML = imcFormateado;
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                    const imcTd = document.getElementById(`imc${idUsuario}`);
+                    imcTd.innerHTML = 'Error al calcular IMC';
+                });
+        }
+
+        function editarUsuarioModal(id) {
+            const usuario = JSON.parse(sessionStorage.getItem(id));
+            console.log(usuario);
+            const formUsuario = document.getElementById('formUsuarioEditar');
+            formUsuario.id.value = usuario.id;
+            formUsuario.apellidoPaterno.value = usuario.apellidoPaterno;
+            formUsuario.apellidoMaterno.value = usuario.apellidoMaterno;
+            formUsuario.nombre.value = usuario.nombre;
+            formUsuario.edad.value = usuario.edad;
+            formUsuario.genero.value = usuario.genero;
+            formUsuario.entidadNacimiento.value = usuario.entidadNacimiento;
+            formUsuario.fechaNacimiento.value = usuario.fechaNacimiento;
+            formUsuario.peso.value = usuario.peso;
+            formUsuario.altura.value = usuario.altura;
+            var byteCharacters = atob(usuario.fotoPerfil);
+            var byteNumbers = new Array(byteCharacters.length);
+            for (var i = 0; i < byteCharacters.length; i++) {
+                byteNumbers[i] = byteCharacters.charCodeAt(i);
+            }
+            var byteArray = new Uint8Array(byteNumbers);
+            var blob = new Blob([byteArray], { type: 'image/jpeg' });
+            console.log(blob);
+            // crea el archivo de imagen .jpg
+            var url = URL.createObjectURL(blob);
+            formUsuario.fotoPerfilEditar.src = url;
+            $('#editarUsuarioModal').modal('show');
+        }
+
+        function eliminarUsuario(id) {
+            Swal.fire({
+                title: '¿Estás seguro?',
+                text: "¡No podrás revertir esto!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Sí, eliminarlo'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    Swal.fire({
+                        title: 'Cargando...',
+                        allowOutsideClick: false,
+                        showConfirmButton: false,
+                        willOpen: () => {
+                            Swal.showLoading();
+                        }
+                    });
+                    fetch(`http://localhost/usuarios/services/UsuarioService.php?id=${id}`, {
+                        method: 'DELETE'
+                    })
+                        .then(response => response.json())
+                        .then(data => {
+                            Swal.close();
+                            Swal.fire({
+                                title: 'Usuario Eliminado',
+                                text: 'El usuario se ha eliminado correctamente',
+                                icon: 'success',
+                                confirmButtonText: 'Aceptar'
+                            });
+                            obtenerUsuarios();
+                        })
+                        .catch(error => {
+                            console.error('Error:', error);
+                            Swal.close();
+                            Swal.fire({
+                                title: 'Error!',
+                                text: 'Ha ocurrido un error al eliminar el usuario',
+                                icon: 'error',
+                                confirmButtonText: 'Aceptar'
+                            });
+                            obtenerUsuarios();
+                        });
+                }
+            })
+        }
+
+        function obtenerUsuarios() {
+            fetch('http://localhost/usuarios/services/UsuarioService.php')
+                .then(response => response.json())
+                .then(data => {
+                    sessionStorage.clear();
+                    const tablaUsuarios = document.getElementById('tablaUsuarios');
+                    const tbody = tablaUsuarios.querySelector('tbody');
+                    tbody.innerHTML = '';
+                    data.forEach(usuario => {
+                        sessionStorage.setItem(usuario.id, JSON.stringify(usuario));
+                        const tr = document.createElement('tr');
+                        const imc = calcularIMC(usuario.peso, usuario.altura, usuario.id);
+                        tr.innerHTML = `
+                            <td>${usuario.apellidoPaterno}</td>
+                            <td>${usuario.apellidoMaterno}</td>
+                            <td>${usuario.nombre}</td>
+                            <td>${usuario.edad}</td>
+                            <td>${usuario.genero}</td>
+                            <td>${usuario.entidadNacimiento}</td>
+                            <td>${usuario.fechaNacimiento}</td>
+                            <td>${usuario.curp}</td>
+                            <td>${usuario.rfc}</td>
+                            <td>${usuario.peso}</td>
+                            <td>${usuario.altura}</td>
+                            <td id="imc${usuario.id}" name="imc${usuario.id}"></td>
+                            <td><img src="data:image/jpeg;base64,${usuario.fotoPerfil}" alt="Foto de perfil" width="100"></td>
+                            <td><button onclick="editarUsuarioModal(${usuario.id})">✏️</button> <button onclick="eliminarUsuario(${usuario.id})">❌</button></td>
+                            `;
+                        tbody.appendChild(tr);
+                    });
+                })
+                .catch(error => {
+                    console.error('Error:', error);
+                });
+        }
+    </Script>
+
+</body>
+
+</html>
